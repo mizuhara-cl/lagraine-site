@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>lagraine — ヒーロー案 比較</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="design-canvas.jsx"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #e8e4df; }
+</style>
+</head>
+<body>
+<script type="text/babel">
+/* ─── Shared tokens ─────────────────────────────────────── */
+const T = {
+  cream:     '#f7f3ee',
+  creamDark: '#ede6db',
+  teal:      '#1d4f47',
+  tealMid:   '#2d6b61',
+  tealLight: '#4a9087',
+  sage:      '#7aaa96',
+  sagePale:  '#c8ddd7',
+  warm:      '#2a2420',
+  warmMid:   '#5a5048',
+  warmLight: '#9a8e85',
+  sand:      '#c4b49a',
+  sandPale:  '#e8ddd0',
+  white:     '#ffffff',
+};
+
+/* ─── Shared Nav ──────────────────────────────────────────── */
+function Nav({ light = false }) {
+  const fg = light ? T.cream : T.warm;
+  const border = light ? 'rgba(255,255,255,0.15)' : 'rgba(42,36,32,0.1)';
+  return (
+    <nav style={{
+      display:'flex', alignItems:'center', justifyContent:'space-between',
+      padding:'0 48px', height:64,
+      borderBottom:`1px solid ${border}`,
+    }}>
+      <div style={{ display:'flex', flexDirection:'column', gap:2 }}>
+        <span style={{ fontFamily:"'Noto Serif JP',serif", fontSize:13, fontWeight:500, color: light? T.sagePale : T.teal, letterSpacing:'0.18em' }}>lagraine</span>
+        <span style={{ fontFamily:"'Noto Sans JP',sans-serif", fontSize:9, color: light?'rgba(255,255,255,0.5)':T.warmLight, letterSpacing:'0.08em' }}>訪問看護ステーション らぐれーぬ</span>
+      </div>
+      <div style={{ display:'flex', gap:32 }}>
+        {['精神科訪問看護とは','サービス内容','ご利用方法','よくある質問','お問い合わせ'].map(item => (
+          <span key={item} style={{ fontFamily:"'Noto Sans JP',sans-serif", fontSize:11, color: light?'rgba(255,255,255,0.7)':T.warmMid, letterSpacing:'0.06em', cursor:'pointer', whiteSpace:'nowrap' }}>{item}</span>
+        ))}
+        <span style={{
+          fontFamily:"'Noto Sans JP',sans-serif", fontSize:10, letterSpacing:'0.06em',
+          padding:'6px 14px', border:`1px solid ${light?'rgba(255,255,255,0.4)':T.teal}`,
+          color: light? T.cream : T.teal, cursor:'pointer', whiteSpace:'nowrap',
+        }}>医療機関の方へ</span>
+      </div>
+    </nav>
+  );
+}
+
+/* ─── Variant A: 余白と書体 ────────────────────────────── */
+function HeroA() {
+  return (
+    <div style={{ width:1200, background: T.cream, fontFamily:"'Noto Sans JP',sans-serif" }}>
+      <Nav />
+      {/* Hero */}
+      <div style={{ padding:'80px 80px 72px', position:'relative', overflow:'hidden' }}>
+        {/* Faint circle decoration */}
+        <div style={{
+          position:'absolute', right:-60, top:-80,
+          width:480, height:480,
+          borderRadius:'50%',
+          border:`1px solid ${T.sagePale}`,
+          pointerEvents:'none',
+        }} />
+        <div style={{
+          position:'absolute', right:20, top:-20,
+          width:340, height:340,
+          borderRadius:'50%',
+          border:`1px solid ${T.sagePale}`,
+          pointerEvents:'none',
+        }} />
+
+        {/* Label */}
+        <div style={{ display:'flex', alignItems:'center', gap:12, marginBottom:32 }}>
+          <div style={{ width:24, height:1, background: T.tealLight }} />
+          <span style={{ fontSize:11, color: T.tealLight, letterSpacing:'0.2em' }}>精神科訪問看護　京都市・向日市・長岡京市</span>
+        </div>
+
+        {/* Main copy */}
+        <h1 style={{
+          fontFamily:"'Noto Serif JP',serif", fontWeight:300,
+          fontSize:52, lineHeight:1.6, color: T.warm,
+          marginBottom:32, letterSpacing:'0.08em',
+          maxWidth:640,
+        }}>
+          ともにあり、<br />ともにあゆむ。
+        </h1>
+
+        {/* Sub copy */}
+        <p style={{
+          fontSize:14, lineHeight:2, color: T.warmMid,
+          maxWidth:480, marginBottom:48, letterSpacing:'0.06em',
+        }}>
+          らぐれーぬはフランス語で【たね】。<br />
+          お一人おひとりの「自分らしさ」のたねが<br />
+          その方自身の力で育つよう、ともに歩みます。
+        </p>
+
+        {/* CTA */}
+        <div style={{ display:'flex', gap:16, alignItems:'center' }}>
+          <button style={{
+            fontFamily:"'Noto Sans JP',sans-serif", fontSize:13, letterSpacing:'0.1em',
+            padding:'14px 40px', background: T.teal, color: T.cream,
+            border:'none', cursor:'pointer',
+          }}>
+            まずは相談する
+          </button>
+          <span style={{ fontSize:12, color: T.tealMid, letterSpacing:'0.06em' }}>
+            ↓ サービスについて詳しく
+          </span>
+        </div>
+      </div>
+
+      {/* Feature bar */}
+      <div style={{
+        display:'grid', gridTemplateColumns:'repeat(4,1fr)',
+        borderTop:`1px solid ${T.sandPale}`,
+      }}>
+        {[
+          { num:'14', unit:'年', label:'の支援実績' },
+          { num:'専任', unit:'', label:'スタッフ担当制' },
+          { num:'医療', unit:'保険', label:'・自立支援医療対応' },
+          { num:'月〜土', unit:'', label:'9:00〜17:00対応' },
+        ].map((f, i) => (
+          <div key={i} style={{
+            padding:'28px 32px',
+            borderRight: i < 3 ? `1px solid ${T.sandPale}` : 'none',
+          }}>
+            <div style={{ fontFamily:"'Noto Serif JP',serif", fontSize:22, color: T.teal, marginBottom:4 }}>
+              {f.num}<span style={{ fontSize:13 }}>{f.unit}</span>
+            </div>
+            <div style={{ fontSize:11, color: T.warmMid, letterSpacing:'0.06em' }}>{f.label}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* Teaser sections */}
+      <div style={{ padding:'56px 80px', background: T.white }}>
+        <div style={{ fontSize:11, color: T.tealLight, letterSpacing:'0.2em', marginBottom:24 }}>このような悩みをお持ちではありませんか</div>
+        <div style={{ display:'flex', flexWrap:'wrap', gap:'12px 24px' }}>
+          {['自分らしさがわからない','感情に振り回されて疲れる','人とのコミュニケーションが苦手','自立したいけど方法がわからない','悩みを話せる人がいない','生活のリズムが安定しない'].map(t => (
+            <div key={t} style={{ display:'flex', alignItems:'center', gap:8, fontSize:13, color: T.warmMid }}>
+              <div style={{ width:6, height:6, borderRadius:'50%', background: T.sage, flexShrink:0 }} />
+              {t}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ─── Variant B: スプリットレイアウト ──────────────────── */
+function HeroB() {
+  return (
+    <div style={{ width:1200, background: T.white, fontFamily:"'Noto Sans JP',sans-serif" }}>
+      <Nav />
+      <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', minHeight:500 }}>
+        {/* Left: content */}
+        <div style={{ padding:'72px 64px', display:'flex', flexDirection:'column', justifyContent:'center', background: T.cream }}>
+          <div style={{ display:'flex', alignItems:'center', gap:10, marginBottom:28 }}>
+            <div style={{ width:3, height:28, background: T.teal }} />
+            <span style={{ fontSize:11, color: T.tealMid, letterSpacing:'0.18em' }}>訪問看護ステーション　らぐれーぬ</span>
+          </div>
+
+          <h1 style={{
+            fontFamily:"'Noto Serif JP',serif", fontWeight:300,
+            fontSize:44, lineHeight:1.65, color: T.warm,
+            marginBottom:28, letterSpacing:'0.1em',
+          }}>
+            ともにあり、<br />ともにあゆむ。
+          </h1>
+
+          <p style={{ fontSize:13, lineHeight:2.1, color: T.warmMid, marginBottom:40, letterSpacing:'0.05em' }}>
+            看護師・作業療法士が自宅に訪問し、<br />
+            こころとからだ、そして生活を支えます。<br />
+            認定NPO法人SEEDきょうと
+          </p>
+
+          <div style={{ display:'flex', gap:12 }}>
+            <button style={{
+              fontFamily:"'Noto Sans JP',sans-serif", fontSize:12, letterSpacing:'0.12em',
+              padding:'13px 32px', background: T.teal, color: T.cream,
+              border:'none', cursor:'pointer',
+            }}>お問い合わせ</button>
+            <button style={{
+              fontFamily:"'Noto Sans JP',sans-serif", fontSize:12, letterSpacing:'0.08em',
+              padding:'13px 28px', background:'transparent', color: T.teal,
+              border:`1px solid ${T.teal}`, cursor:'pointer',
+            }}>サービスを見る</button>
+          </div>
+
+          <div style={{ marginTop:40, padding:'20px 0 0', borderTop:`1px solid ${T.sandPale}` }}>
+            <div style={{ fontSize:11, color: T.warmLight, letterSpacing:'0.06em', marginBottom:8 }}>対応エリア</div>
+            <div style={{ fontSize:13, color: T.warmMid }}>京都市（全域）・向日市・長岡京市</div>
+          </div>
+        </div>
+
+        {/* Right: image placeholder + badge */}
+        <div style={{ background: T.teal, position:'relative', overflow:'hidden', display:'flex', alignItems:'center', justifyContent:'center' }}>
+          {/* SVG organic shapes */}
+          <svg width="100%" height="100%" viewBox="0 0 600 500" style={{ position:'absolute', inset:0 }} preserveAspectRatio="xMidYMid slice">
+            <rect width="600" height="500" fill={T.teal} />
+            {/* Large circle */}
+            <circle cx="480" cy="80" r="220" fill="none" stroke={T.tealMid} strokeWidth="1" />
+            <circle cx="480" cy="80" r="160" fill="none" stroke={T.tealMid} strokeWidth="0.5" />
+            {/* Small seed shape */}
+            <ellipse cx="300" cy="250" rx="90" ry="140" fill="none" stroke={T.tealLight} strokeWidth="0.8" transform="rotate(15,300,250)" />
+            <ellipse cx="300" cy="250" rx="60" ry="100" fill="rgba(74,144,135,0.15)" transform="rotate(15,300,250)" />
+            {/* dots */}
+            {[...Array(20)].map((_,i) => (
+              <circle key={i}
+                cx={100 + (i%5)*100} cy={80 + Math.floor(i/5)*100}
+                r="1.5" fill={T.tealLight} opacity="0.6" />
+            ))}
+          </svg>
+
+          {/* Placeholder label */}
+          <div style={{
+            position:'relative', zIndex:2,
+            border:`1px dashed rgba(255,255,255,0.2)`,
+            padding:'24px 36px', textAlign:'center',
+            background:'rgba(29,79,71,0.4)',
+          }}>
+            <div style={{ fontFamily:'monospace', fontSize:11, color:'rgba(255,255,255,0.4)', letterSpacing:'0.1em', marginBottom:6 }}>IMAGE PLACEHOLDER</div>
+            <div style={{ fontFamily:'monospace', fontSize:10, color:'rgba(255,255,255,0.3)' }}>スタッフ・活動写真</div>
+          </div>
+
+          {/* Tagline overlay bottom */}
+          <div style={{
+            position:'absolute', bottom:0, left:0, right:0,
+            padding:'20px 32px',
+            background:'rgba(0,0,0,0.25)',
+            fontFamily:"'Noto Serif JP',serif",
+            fontSize:12, color:'rgba(255,255,255,0.7)',
+            letterSpacing:'0.2em',
+          }}>
+            lagraine　—　フランス語で「たね」
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom features */}
+      <div style={{ display:'grid', gridTemplateColumns:'repeat(4,1fr)', background: T.creamDark }}>
+        {[
+          { icon:'🩺', label:'精神科専門', sub:'看護師・作業療法士' },
+          { icon:'🏠', label:'ご自宅への訪問', sub:'安心の担当制' },
+          { icon:'💊', label:'医療保険対応', sub:'自立支援医療も利用可' },
+          { icon:'📞', label:'まずはご相談', sub:'075-754-8832' },
+        ].map((f, i) => (
+          <div key={i} style={{
+            padding:'24px 28px', display:'flex', alignItems:'center', gap:16,
+            borderRight: i<3?`1px solid ${T.sandPale}`:'none',
+          }}>
+            <span style={{ fontSize:20 }}>{f.icon}</span>
+            <div>
+              <div style={{ fontSize:13, fontWeight:500, color: T.warm, marginBottom:3 }}>{f.label}</div>
+              <div style={{ fontSize:11, color: T.warmMid }}>{f.sub}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ─── Variant C: フルブリード・テール ──────────────────── */
+function HeroC() {
+  return (
+    <div style={{ width:1200, fontFamily:"'Noto Sans JP',sans-serif", background: T.teal }}>
+      <Nav light />
+
+      {/* Hero full bleed */}
+      <div style={{ position:'relative', overflow:'hidden', padding:'80px 80px 72px', minHeight:480, display:'flex', flexDirection:'column', justifyContent:'flex-end' }}>
+        {/* BG pattern */}
+        <svg style={{ position:'absolute', inset:0, width:'100%', height:'100%' }} viewBox="0 0 1200 480" preserveAspectRatio="xMidYMid slice">
+          {/* Large bg circle */}
+          <circle cx="950" cy="100" r="400" fill="none" stroke="rgba(255,255,255,0.04)" strokeWidth="80" />
+          <circle cx="950" cy="100" r="260" fill="none" stroke="rgba(255,255,255,0.04)" strokeWidth="40" />
+          {/* seed/leaf motifs */}
+          {[
+            { cx:900, cy:200, rx:130, ry:200, a:'-20' },
+            { cx:1050, cy:180, rx:80, ry:120, a:'10' },
+            { cx:850, cy:320, rx:50, ry:80, a:'30' },
+          ].map((s, i) => (
+            <ellipse key={i}
+              cx={s.cx} cy={s.cy} rx={s.rx} ry={s.ry}
+              fill={i===0?'rgba(74,144,135,0.25)':'rgba(255,255,255,0.04)'}
+              transform={`rotate(${s.a},${s.cx},${s.cy})`}
+            />
+          ))}
+          {/* Grid of dots */}
+          {[...Array(8)].map((_,row) =>
+            [...Array(16)].map((_,col) => (
+              <circle key={`${row}-${col}`}
+                cx={col*80+20} cy={row*60+20}
+                r="1.2" fill="rgba(255,255,255,0.12)"
+              />
+            ))
+          )}
+        </svg>
+
+        {/* Content */}
+        <div style={{ position:'relative', zIndex:1, maxWidth:700 }}>
+          <div style={{
+            display:'inline-flex', alignItems:'center', gap:10, marginBottom:36,
+            padding:'6px 16px 6px 10px',
+            background:'rgba(255,255,255,0.1)',
+            borderRadius:0,
+          }}>
+            <div style={{ width:8, height:8, borderRadius:'50%', background: T.sage }} />
+            <span style={{ fontSize:11, color:'rgba(255,255,255,0.7)', letterSpacing:'0.2em' }}>京都市・向日市・長岡京市　精神科訪問看護</span>
+          </div>
+
+          <h1 style={{
+            fontFamily:"'Noto Serif JP',serif", fontWeight:300,
+            fontSize:58, lineHeight:1.55, color: T.cream,
+            marginBottom:28, letterSpacing:'0.08em',
+          }}>
+            ともにあり、<br />ともにあゆむ。
+          </h1>
+
+          <p style={{ fontSize:15, lineHeight:2, color:'rgba(247,243,238,0.7)', marginBottom:48, letterSpacing:'0.05em', maxWidth:520 }}>
+            らぐれーぬはフランス語で「たね」。<br />
+            お一人おひとりが自分らしく育つその力を、専門のスタッフがご自宅でお支えします。
+          </p>
+
+          <div style={{ display:'flex', gap:14 }}>
+            <button style={{
+              fontFamily:"'Noto Sans JP',sans-serif", fontSize:13, letterSpacing:'0.12em',
+              padding:'15px 44px', background: T.cream, color: T.teal,
+              border:'none', cursor:'pointer', fontWeight:500,
+            }}>まずはご相談ください</button>
+            <button style={{
+              fontFamily:"'Noto Sans JP',sans-serif", fontSize:13, letterSpacing:'0.08em',
+              padding:'15px 32px', background:'transparent', color: T.cream,
+              border:`1px solid rgba(247,243,238,0.35)`, cursor:'pointer',
+            }}>サービス詳細を見る ↓</button>
+          </div>
+        </div>
+      </div>
+
+      {/* Feature strip */}
+      <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', background:'rgba(0,0,0,0.2)' }}>
+        {[
+          { label:'看護師・作業療法士が訪問', sub:'専門スタッフが自宅でケア' },
+          { label:'医療保険・自立支援医療', sub:'費用面でも安心してご利用を' },
+          { label:'担当制で安心', sub:'毎回同じスタッフが担当します' },
+        ].map((f, i) => (
+          <div key={i} style={{
+            padding:'24px 36px',
+            borderRight: i<2 ? '1px solid rgba(255,255,255,0.1)' : 'none',
+          }}>
+            <div style={{ fontFamily:"'Noto Serif JP',serif", fontSize:15, color: T.cream, marginBottom:6 }}>{f.label}</div>
+            <div style={{ fontSize:12, color:'rgba(247,243,238,0.5)', letterSpacing:'0.04em' }}>{f.sub}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* Light section teaser */}
+      <div style={{ background: T.cream, padding:'52px 80px' }}>
+        <div style={{ fontSize:11, color: T.tealMid, letterSpacing:'0.2em', marginBottom:24 }}>このような悩みはありませんか</div>
+        <div style={{ display:'flex', flexWrap:'wrap', gap:'14px 32px' }}>
+          {['自分らしさがわからない','感情に振り回されて疲れる','人とのコミュニケーションが苦手','自立したいけど方法がわからない','悩みを話せる人がいない','生活のリズムが安定しない'].map(t => (
+            <div key={t} style={{ display:'flex', alignItems:'center', gap:10, fontSize:13, color: T.warmMid }}>
+              <svg width="14" height="14" viewBox="0 0 14 14">
+                <ellipse cx="7" cy="7" rx="4" ry="5.5" fill="none" stroke={T.tealLight} strokeWidth="1" transform="rotate(15,7,7)" />
+                <circle cx="7" cy="7" r="1.5" fill={T.tealLight} />
+              </svg>
+              {t}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ─── Mobile variants ──────────────────────────────────── */
+function MobileA() {
+  return (
+    <div style={{ width:390, background: T.cream, fontFamily:"'Noto Sans JP',sans-serif", overflow:'hidden' }}>
+      {/* Mobile Nav */}
+      <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', padding:'0 20px', height:56, borderBottom:`1px solid ${T.sandPale}` }}>
+        <div>
+          <div style={{ fontFamily:"'Noto Serif JP',serif", fontSize:12, fontWeight:500, color: T.teal, letterSpacing:'0.18em' }}>lagraine</div>
+          <div style={{ fontSize:8, color: T.warmLight, letterSpacing:'0.06em' }}>訪問看護ステーション らぐれーぬ</div>
+        </div>
+        <div style={{ display:'flex', flexDirection:'column', gap:5, padding:8, cursor:'pointer' }}>
+          {[0,1,2].map(i => <div key={i} style={{ width:22, height:1.5, background: T.warm }} />)}
+        </div>
+      </div>
+
+      <div style={{ padding:'48px 28px 40px', position:'relative', overflow:'hidden' }}>
+        <div style={{ position:'absolute', right:-40, top:-40, width:240, height:240, borderRadius:'50%', border:`1px solid ${T.sagePale}` }} />
+        <div style={{ display:'flex', alignItems:'center', gap:8, marginBottom:20 }}>
+          <div style={{ width:16, height:1, background: T.tealLight }} />
+          <span style={{ fontSize:10, color: T.tealLight, letterSpacing:'0.15em' }}>精神科訪問看護　京都市</span>
+        </div>
+        <h1 style={{ fontFamily:"'Noto Serif JP',serif", fontWeight:300, fontSize:34, lineHeight:1.6, color: T.warm, marginBottom:20, letterSpacing:'0.1em' }}>
+          ともにあり、<br />ともにあゆむ。
+        </h1>
+        <p style={{ fontSize:12, lineHeight:2, color: T.warmMid, marginBottom:36, letterSpacing:'0.04em' }}>
+          お一人おひとりの「自分らしさ」のたねが<br />その方自身の力で育つよう、ともに歩みます。
+        </p>
+        <button style={{ fontFamily:"'Noto Sans JP',sans-serif", fontSize:12, letterSpacing:'0.1em', padding:'13px 36px', background: T.teal, color: T.cream, border:'none', width:'100%', cursor:'pointer' }}>
+          まずは相談する
+        </button>
+      </div>
+
+      <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', background: T.white, borderTop:`1px solid ${T.sandPale}` }}>
+        {[{n:'専任',l:'担当制スタッフ'},{n:'医療保険',l:'自立支援医療対応'}].map((f,i)=>(
+          <div key={i} style={{ padding:'18px 20px', borderRight:i===0?`1px solid ${T.sandPale}`:'none' }}>
+            <div style={{ fontFamily:"'Noto Serif JP',serif", fontSize:16, color: T.teal, marginBottom:3 }}>{f.n}</div>
+            <div style={{ fontSize:10, color: T.warmMid }}>{f.l}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function MobileC() {
+  return (
+    <div style={{ width:390, background: T.teal, fontFamily:"'Noto Sans JP',sans-serif", overflow:'hidden' }}>
+      <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', padding:'0 20px', height:56, borderBottom:'1px solid rgba(255,255,255,0.12)' }}>
+        <div>
+          <div style={{ fontFamily:"'Noto Serif JP',serif", fontSize:12, fontWeight:500, color: T.sagePale, letterSpacing:'0.18em' }}>lagraine</div>
+          <div style={{ fontSize:8, color:'rgba(255,255,255,0.4)', letterSpacing:'0.06em' }}>訪問看護ステーション らぐれーぬ</div>
+        </div>
+        <div style={{ display:'flex', flexDirection:'column', gap:5, padding:8, cursor:'pointer' }}>
+          {[0,1,2].map(i => <div key={i} style={{ width:22, height:1.5, background: T.cream }} />)}
+        </div>
+      </div>
+
+      <div style={{ position:'relative', padding:'52px 28px 44px', overflow:'hidden' }}>
+        <svg style={{ position:'absolute', inset:0, width:'100%', height:'100%' }} viewBox="0 0 390 340" preserveAspectRatio="xMidYMid slice">
+          <circle cx="320" cy="60" r="200" fill="none" stroke="rgba(255,255,255,0.04)" strokeWidth="50" />
+          <ellipse cx="300" cy="200" rx="100" ry="150" fill="rgba(74,144,135,0.2)" transform="rotate(-15,300,200)" />
+        </svg>
+        <div style={{ position:'relative', zIndex:1 }}>
+          <div style={{ display:'inline-flex', alignItems:'center', gap:8, marginBottom:28, padding:'5px 12px', background:'rgba(255,255,255,0.1)' }}>
+            <div style={{ width:6, height:6, borderRadius:'50%', background: T.sage }} />
+            <span style={{ fontSize:10, color:'rgba(255,255,255,0.7)', letterSpacing:'0.15em' }}>京都市・向日市・長岡京市</span>
+          </div>
+          <h1 style={{ fontFamily:"'Noto Serif JP',serif", fontWeight:300, fontSize:38, lineHeight:1.6, color: T.cream, marginBottom:20, letterSpacing:'0.08em' }}>
+            ともにあり、<br />ともにあゆむ。
+          </h1>
+          <p style={{ fontSize:12, lineHeight:2, color:'rgba(247,243,238,0.65)', marginBottom:36 }}>
+            らぐれーぬはフランス語で「たね」。<br />専門スタッフがご自宅でお支えします。
+          </p>
+          <button style={{ fontFamily:"'Noto Sans JP',sans-serif", fontSize:12, letterSpacing:'0.12em', padding:'14px 0', background: T.cream, color: T.teal, border:'none', width:'100%', cursor:'pointer', fontWeight:500 }}>
+            まずはご相談ください
+          </button>
+        </div>
+      </div>
+
+      <div style={{ background: T.cream, padding:'32px 28px' }}>
+        <div style={{ fontSize:10, color: T.tealMid, letterSpacing:'0.2em', marginBottom:16 }}>このような悩みはありませんか</div>
+        {['自分らしさがわからない','感情に振り回されて疲れる','悩みを話せる人がいない'].map(t=>(
+          <div key={t} style={{ display:'flex', alignItems:'center', gap:10, fontSize:12, color: T.warmMid, marginBottom:10 }}>
+            <div style={{ width:6, height:6, borderRadius:'50%', background: T.sage, flexShrink:0 }} />
+            {t}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ─── App ─────────────────────────────────────────────── */
+function App() {
+  const [showTweaks, setShowTweaks] = React.useState(false);
+  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+    "activeVariant": "全案"
+  }/*EDITMODE-END*/;
+  const [tweaks, setTweaks] = React.useState(TWEAK_DEFAULTS);
+
+  React.useEffect(() => {
+    window.addEventListener('message', e => {
+      if (e.data?.type === '__activate_edit_mode') setShowTweaks(true);
+      if (e.data?.type === '__deactivate_edit_mode') setShowTweaks(false);
+    });
+    window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+  }, []);
+
+  const setTweak = (key, val) => {
+    setTweaks(p => ({ ...p, [key]: val }));
+    window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { [key]: val } }, '*');
+  };
+
+  return (
+    <>
+      <DesignCanvas>
+        {/* Desktop row */}
+        <DCSection title="ヒーロー案 — デスクトップ（1200px）" subtitle="3案を比較 · ピンチ/スクロールでナビゲート">
+          <DCArtboard label="案A  ／  余白と書体" width={1200}>
+            <HeroA />
+          </DCArtboard>
+        </DCSection>
+
+        <DCSection title="" subtitle="">
+          <DCArtboard label="案B  ／  スプリットレイアウト" width={1200}>
+            <HeroB />
+          </DCArtboard>
+        </DCSection>
+
+        <DCSection title="" subtitle="">
+          <DCArtboard label="案C  ／  フルブリード・ディープテール" width={1200}>
+            <HeroC />
+          </DCArtboard>
+        </DCSection>
+
+        {/* Mobile row */}
+        <DCSection title="モバイル（390px）" subtitle="案A・案Cのスマホ表示">
+          <DCArtboard label="案A モバイル" width={390}>
+            <MobileA />
+          </DCArtboard>
+          <DCArtboard label="案C モバイル" width={390}>
+            <MobileC />
+          </DCArtboard>
+          <DCPostIt top={10} left={480} rotate={2} width={200}>
+            案Bのモバイルも<br />必要な場合はお知らせを！
+          </DCPostIt>
+        </DCSection>
+      </DesignCanvas>
+
+      {/* Tweaks */}
+      {showTweaks && (
+        <div style={{
+          position:'fixed', bottom:24, right:24, zIndex:9999,
+          background:'#fff', border:'1px solid #e0d8d0',
+          boxShadow:'0 4px 24px rgba(0,0,0,0.12)',
+          padding:'20px', width:220,
+          fontFamily:"'Noto Sans JP',sans-serif",
+        }}>
+          <div style={{ fontSize:12, fontWeight:500, color:'#2a2420', marginBottom:16, letterSpacing:'0.08em' }}>Tweaks</div>
+          <div style={{ fontSize:11, color:'#9a8e85', marginBottom:10 }}>フォーカスする案</div>
+          {['A','B','C','全案'].map(v => (
+            <button key={v} onClick={() => setTweak('activeVariant', v)}
+              style={{
+                display:'block', width:'100%', textAlign:'left',
+                padding:'8px 12px', marginBottom:4, fontSize:12,
+                background: tweaks.activeVariant === v ? '#1d4f47' : 'transparent',
+                color: tweaks.activeVariant === v ? '#f7f3ee' : '#5a5048',
+                border:`1px solid ${tweaks.activeVariant === v ? '#1d4f47' : '#e0d8d0'}`,
+                cursor:'pointer',
+              }}
+            >
+              {v === '全案' ? '全案表示' : `案${v}にフォーカス`}
+            </button>
+          ))}
+        </div>
+      )}
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+<div id="root"></div>
+</body>
+</html>

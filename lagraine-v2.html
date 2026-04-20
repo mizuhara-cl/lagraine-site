@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>訪問看護ステーション らぐれーぬ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<template id="__bundler_thumbnail" data-bg-color="#d8f2f0">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80">
+    <rect width="120" height="80" fill="#d8f2f0"/>
+    <circle cx="60" cy="34" r="18" fill="none" stroke="#5abfb9" stroke-width="2.5"/>
+    <circle cx="60" cy="34" r="11" fill="#aee6e2" opacity="0.6"/>
+    <circle cx="60" cy="34" r="5" fill="#5abfb9"/>
+    <text x="60" y="62" font-size="7" fill="#4d6860" text-anchor="middle" font-family="sans-serif">らぐれーぬ</text>
+  </svg>
+</template>
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --mint:        #5abfb9;
+  --mint-mid:    #7ed0cb;
+  --mint-light:  #aee6e2;
+  --mint-pale:   #d8f2f0;
+  --mint-bg:     #f0faf9;
+  --green:       #8ecf6a;
+  --green-light: #b6e494;
+  --green-pale:  #e4f5d4;
+  --ink:         #253530;
+  --ink-mid:     #4d6860;
+  --ink-light:   #8aa8a2;
+  --sand:        #f5f0e8;
+  --white:       #ffffff;
+  --serif:       'Noto Serif JP', serif;
+  --sans:        'Noto Sans JP', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); color: var(--ink); background: var(--white); line-height: 1.8; -webkit-font-smoothing: antialiased; }
+img { display: block; max-width: 100%; }
+
+/* ── Header ── */
+header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(90,191,185,0.15);
+}
+.header-inner {
+  max-width: 1200px; margin: 0 auto; padding: 0 40px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 68px;
+}
+.logo-wrap img { height: 54px; width: auto; object-fit: contain; }
+nav { display: flex; align-items: center; gap: 28px; }
+nav a { font-size: 12px; color: var(--ink-mid); text-decoration: none; letter-spacing: 0.06em; transition: color .2s; white-space: nowrap; }
+nav a:hover { color: var(--mint); }
+.nav-cta {
+  font-size: 11px; letter-spacing: 0.1em; padding: 7px 16px;
+  border: 1.5px solid var(--mint); color: var(--mint);
+  text-decoration: none; transition: all .2s; white-space: nowrap;
+}
+.nav-cta:hover { background: var(--mint); color: white; }
+.menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; }
+.menu-toggle span { display: block; width: 22px; height: 1.5px; background: var(--ink); }
+
+/* ── Hero ── */
+.hero {
+  display: grid; grid-template-columns: 1fr 1fr;
+  min-height: calc(100vh - 68px); max-height: 820px;
+}
+.hero-left {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 64px 56px 64px 80px;
+  background: var(--white);
+  position: relative; overflow: hidden;
+}
+.hero-left::before {
+  content: '';
+  position: absolute; right: -60px; bottom: -80px;
+  width: 360px; height: 360px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(174,230,226,0.25) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-eyebrow { display: flex; align-items: center; gap: 10px; margin-bottom: 28px; }
+.hero-eyebrow-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--mint); }
+.hero-eyebrow span { font-size: 11px; color: var(--ink-light); letter-spacing: 0.18em; }
+.hero-copy { margin-bottom: 36px; }
+.hero-tagline {
+  font-family: var(--serif); font-weight: 300;
+  font-size: 28px; line-height: 1.9; color: var(--ink);
+  letter-spacing: 0.08em; margin-bottom: 16px;
+}
+.hero-tagline strong { font-weight: 500; color: var(--mint); font-size: 32px; }
+.hero-tagline .tane { display: inline-block; border-bottom: 2px solid var(--green-light); }
+.hero-sub { font-size: 13px; line-height: 2.1; color: var(--ink-mid); max-width: 420px; letter-spacing: 0.05em; }
+.hero-sub .em { color: var(--mint); font-weight: 500; }
+.hero-rule { width: 40px; height: 2px; background: var(--mint-light); margin: 28px 0; }
+.hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn-primary {
+  font-family: var(--sans); font-size: 13px; letter-spacing: 0.1em;
+  padding: 13px 34px; background: var(--mint); color: white;
+  border: none; cursor: pointer; transition: background .2s; text-decoration: none; display: inline-block;
+}
+.btn-primary:hover { background: var(--mint-mid); }
+.btn-outline {
+  font-family: var(--sans); font-size: 13px; letter-spacing: 0.08em;
+  padding: 13px 26px; background: transparent; color: var(--mint);
+  border: 1.5px solid var(--mint); cursor: pointer; transition: all .2s;
+  text-decoration: none; display: inline-block;
+}
+.btn-outline:hover { background: var(--mint-pale); }
+.hero-right {
+  position: relative; overflow: hidden;
+  display: flex; align-items: flex-end; justify-content: center;
+  background: linear-gradient(160deg, #caf0ed 0%, #b0e0c5 50%, #d4f0e0 100%);
+}
+.hero-right-deco { position: absolute; inset: 0; pointer-events: none; }
+.hero-right-img { position: relative; z-index: 1; width: 88%; max-width: 460px; border-radius: 12px 12px 0 0; }
+.hero-right-caption { position: absolute; bottom: 20px; left: 24px; font-size: 11px; color: rgba(37,53,48,0.45); letter-spacing: 0.16em; z-index: 2; }
+
+/* ── Info bar ── */
+.info-bar {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  background: var(--mint-bg);
+  border-top: 1px solid var(--mint-pale); border-bottom: 1px solid var(--mint-pale);
+}
+.info-item { padding: 20px 28px; border-right: 1px solid var(--mint-pale); }
+.info-item:last-child { border-right: none; }
+.info-num { font-family: var(--serif); font-size: 18px; color: var(--mint); margin-bottom: 3px; }
+.info-num sup { font-size: 10px; }
+.info-label { font-size: 11px; color: var(--ink-mid); letter-spacing: 0.04em; }
+
+/* ── Section base ── */
+section { padding: 96px 0; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+.section-tag { font-size: 11px; color: var(--mint); letter-spacing: 0.25em; margin-bottom: 14px; display: block; }
+.section-title { font-family: var(--serif); font-weight: 300; font-size: 32px; line-height: 1.55; color: var(--ink); margin-bottom: 14px; letter-spacing: 0.06em; }
+.section-lead { font-size: 14px; color: var(--ink-mid); line-height: 2; max-width: 540px; letter-spacing: 0.04em; }
+
+/* ── About/seed ── */
+.about-seed { background: var(--mint-bg); }
+.seed-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.seed-visual { display: flex; justify-content: center; align-items: center; }
+.seed-visual img { width: 85%; border-radius: 50%; box-shadow: 0 8px 48px rgba(90,191,185,0.18); }
+.seed-message {
+  margin-top: 32px; padding: 28px 32px;
+  background: white; border-left: 3px solid var(--mint);
+  font-size: 14px; line-height: 2.2; color: var(--ink-mid); letter-spacing: 0.06em;
+}
+.seed-message strong { color: var(--ink); font-weight: 500; }
+
+/* ── Concern ── */
+.concern { background: var(--white); }
+.concern-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+.concern-img-wrap { position: relative; }
+.concern-img-wrap img { width: 100%; border-radius: 12px; }
+.concern-badge {
+  position: absolute; bottom: -16px; right: -16px;
+  background: var(--mint); color: white;
+  padding: 14px 22px; font-size: 12px; letter-spacing: 0.1em; line-height: 1.9; text-align: center;
+}
+.concern-list { margin-top: 28px; }
+.concern-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  font-size: 14px; color: var(--ink-mid);
+  padding: 9px 0; border-bottom: 1px solid rgba(90,191,185,0.12); letter-spacing: 0.04em;
+}
+.concern-item:last-child { border-bottom: none; }
+.concern-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); flex-shrink: 0; margin-top: 9px; }
+.diseases { margin-top: 48px; padding: 28px 32px; background: var(--mint-bg); }
+.diseases-title { font-size: 11px; color: var(--mint); letter-spacing: 0.18em; margin-bottom: 14px; }
+.disease-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.disease-tag { font-size: 12px; padding: 5px 14px; border: 1px solid var(--mint-light); color: var(--ink-mid); letter-spacing: 0.04em; }
+
+/* ── Services ── */
+.services { background: var(--mint-bg); }
+.services-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 2px; margin-top: 52px; background: var(--mint-pale); }
+.service-item { background: white; padding: 36px; }
+.service-num { font-family: var(--serif); font-size: 28px; color: var(--mint-light); margin-bottom: 12px; }
+.service-name { font-family: var(--serif); font-size: 17px; color: var(--ink); margin-bottom: 10px; letter-spacing: 0.06em; }
+.service-desc { font-size: 13px; color: var(--ink-mid); line-height: 2; letter-spacing: 0.04em; }
+
+/* ── Steps ── */
+.steps { background: var(--white); }
+.steps-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; margin-top: 52px; }
+.step-item { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.step-img { width: 130px; height: 130px; object-fit: contain; margin-bottom: 12px; }
+.step-num { font-family: var(--serif); font-size: 11px; color: var(--mint); letter-spacing: 0.18em; margin-bottom: 6px; }
+.step-label { font-size: 13px; color: var(--ink); letter-spacing: 0.04em; line-height: 1.7; }
+
+/* ── FAQ ── */
+.faq { background: var(--mint-bg); }
+.faq-list { margin-top: 44px; max-width: 740px; }
+.faq-item { border-bottom: 1px solid var(--mint-pale); overflow: hidden; }
+.faq-q { display: flex; align-items: flex-start; gap: 14px; padding: 22px 0; cursor: pointer; font-size: 14px; color: var(--ink); letter-spacing: 0.04em; user-select: none; }
+.faq-q-mark { font-family: var(--serif); font-size: 18px; color: var(--mint); flex-shrink: 0; }
+.faq-q-icon { margin-left: auto; flex-shrink: 0; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; transition: transform .3s; color: var(--mint); }
+.faq-item.open .faq-q-icon { transform: rotate(45deg); }
+.faq-a { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .3s ease; }
+.faq-item.open .faq-a { grid-template-rows: 1fr; }
+.faq-a-inner { overflow: hidden; display: flex; gap: 14px; padding: 0 0 22px 32px; }
+.faq-a-mark { font-family: var(--serif); font-size: 18px; color: var(--green); flex-shrink: 0; }
+.faq-a-text { font-size: 13px; color: var(--ink-mid); line-height: 2; letter-spacing: 0.04em; }
+
+/* ── Contact ── */
+.contact { background: linear-gradient(150deg, #c8ede9 0%, #caeacc 100%); }
+.contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.contact .section-tag { color: var(--mint); }
+.contact-phone { font-family: var(--serif); font-size: 38px; color: var(--ink); letter-spacing: 0.06em; margin: 28px 0 6px; }
+.contact-hours { font-size: 12px; color: var(--ink-mid); letter-spacing: 0.1em; margin-bottom: 32px; }
+.btn-contact {
+  font-family: var(--sans); font-size: 13px; letter-spacing: 0.1em;
+  padding: 13px 36px; background: var(--ink); color: white;
+  border: none; cursor: pointer; text-decoration: none; display: inline-block; transition: opacity .2s;
+}
+.btn-contact:hover { opacity: 0.8; }
+.info-table { width: 100%; border-collapse: collapse; }
+.info-table tr { border-bottom: 1px solid rgba(90,191,185,0.2); }
+.info-table th { font-size: 11px; color: var(--ink-light); letter-spacing: 0.1em; padding: 14px 0; text-align: left; font-weight: 400; width: 110px; }
+.info-table td { font-size: 13px; color: var(--ink-mid); padding: 14px 0; letter-spacing: 0.04em; }
+
+/* ── Footer ── */
+footer { background: var(--ink); padding: 32px 0; }
+.footer-inner { max-width: 1200px; margin: 0 auto; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+.footer-nav { display: flex; gap: 24px; flex-wrap: wrap; }
+.footer-nav a { font-size: 11px; color: rgba(255,255,255,0.35); text-decoration: none; letter-spacing: 0.06em; transition: color .2s; }
+.footer-nav a:hover { color: var(--mint-light); }
+.copyright { font-size: 11px; color: rgba(255,255,255,0.22); letter-spacing: 0.06em; }
+
+/* ── Mobile menu ── */
+.mobile-menu { display: none; position: fixed; inset: 0; z-index: 200; background: white; flex-direction: column; justify-content: center; align-items: center; gap: 32px; }
+.mobile-menu.open { display: flex; }
+.mobile-menu a { font-size: 18px; color: var(--ink); text-decoration: none; letter-spacing: 0.08em; }
+.mobile-menu-close { position: absolute; top: 24px; right: 24px; background: none; border: none; cursor: pointer; font-size: 28px; color: var(--ink-mid); }
+
+/* ── Tweaks ── */
+#tweaks-panel { display: none; position: fixed; bottom: 24px; right: 24px; z-index: 9999; background: white; border: 1px solid rgba(90,191,185,0.25); box-shadow: 0 4px 24px rgba(0,0,0,0.1); padding: 20px; width: 220px; }
+#tweaks-panel.visible { display: block; }
+.tweaks-title { font-size: 12px; font-weight: 500; color: var(--ink); margin-bottom: 14px; letter-spacing: 0.08em; }
+.tweaks-label { font-size: 11px; color: var(--ink-light); margin-bottom: 8px; display: block; }
+.tweaks-swatch-row { display: flex; gap: 8px; margin-bottom: 16px; }
+.tweaks-swatch { width: 28px; height: 28px; cursor: pointer; border: 2.5px solid transparent; transition: border-color .15s; }
+.tweaks-swatch.active { border-color: var(--ink); }
+.tweaks-btn { display: block; width: 100%; padding: 8px 12px; font-size: 11px; text-align: left; border: 1px solid rgba(90,191,185,0.3); background: transparent; color: var(--ink-mid); cursor: pointer; font-family: var(--sans); margin-bottom: 4px; transition: all .15s; }
+.tweaks-btn.active { background: var(--mint); color: white; border-color: var(--mint); }
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .header-inner { padding: 0 20px; }
+  nav { display: none; }
+  .menu-toggle { display: flex; }
+  .hero { grid-template-columns: 1fr; min-height: auto; max-height: none; }
+  .hero-left { padding: 48px 24px 40px; order: 2; }
+  .hero-tagline { font-size: 22px; }
+  .hero-tagline strong { font-size: 26px; }
+  .hero-right { order: 1; min-height: 260px; max-height: 300px; }
+  .hero-right-img { width: 75%; }
+  .info-bar { grid-template-columns: 1fr 1fr; }
+  .info-item:nth-child(2) { border-right: none; }
+  .info-item:nth-child(3) { border-right: 1px solid var(--mint-pale); }
+  section { padding: 60px 0; }
+  .container { padding: 0 20px; }
+  .seed-inner, .concern-inner, .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+  .concern-badge { bottom: 12px; right: 12px; }
+  .services-grid { grid-template-columns: 1fr; }
+  .steps-grid { grid-template-columns: repeat(2,1fr); }
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 480px) {
+  .hero-tagline { font-size: 20px; }
+  .section-title { font-size: 26px; }
+  .steps-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo-wrap">
+      <img src="assets/logo.jpg" alt="訪問看護ステーション らぐれーぬ">
+    </div>
+    <nav>
+      <a href="#seed">らぐれーぬについて</a>
+      <a href="#concern">こんな悩みに</a>
+      <a href="#services">サービス内容</a>
+      <a href="#steps">ご利用方法</a>
+      <a href="#faq">よくある質問</a>
+      <a href="#contact">お問い合わせ</a>
+      <a href="#" class="nav-cta">医療機関の方へ</a>
+    </nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="メニュー">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu-close" id="menuClose">✕</button>
+  <a href="#seed" onclick="closeMobileMenu()">らぐれーぬについて</a>
+  <a href="#concern" onclick="closeMobileMenu()">こんな悩みに</a>
+  <a href="#services" onclick="closeMobileMenu()">サービス内容</a>
+  <a href="#steps" onclick="closeMobileMenu()">ご利用方法</a>
+  <a href="#faq" onclick="closeMobileMenu()">よくある質問</a>
+  <a href="#contact" onclick="closeMobileMenu()">お問い合わせ</a>
+</div>
+
+<!-- Hero -->
+<div class="hero" id="top">
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-dot"></div>
+      <span>訪問看護ステーション　らぐれーぬ　／　認定NPO法人SEEDきょうと</span>
+    </div>
+    <div class="hero-copy">
+      <h1 class="hero-tagline">
+        らぐれーぬは<br>
+        フランス語で<strong class="tane">【たね】</strong>。<br>
+        <span style="font-size:24px;">お一人おひとりの</span><br>
+        「自分らしさ」のたねが<br>
+        <span style="font-size:24px;">その方自身の力で育つように。</span>
+      </h1>
+      <p class="hero-sub">
+        その力を<span class="em">信じ</span>、<span class="em">見守り</span>、<span class="em">支え</span>、<br>
+        ともに成長していきたいと考えています。
+      </p>
+    </div>
+    <div class="hero-rule"></div>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">まずはご相談ください</a>
+      <a href="#seed" class="btn-outline">らぐれーぬについて</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <svg class="hero-right-deco" viewBox="0 0 600 800" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <circle cx="500" cy="150" r="280" fill="rgba(255,255,255,0.25)"/>
+      <circle cx="500" cy="150" r="180" fill="rgba(255,255,255,0.2)"/>
+      <circle cx="80" cy="600" r="200" fill="rgba(142,207,106,0.15)"/>
+    </svg>
+    <img class="hero-right-img" src="assets/b.png" alt="訪問看護のシーン">
+    <div class="hero-right-caption">専門スタッフがご自宅に訪問します</div>
+  </div>
+</div>
+
+<!-- Info bar -->
+<div class="info-bar">
+  <div class="info-item">
+    <div class="info-num">専任<sup>担当制</sup></div>
+    <div class="info-label">毎回同じスタッフが訪問</div>
+  </div>
+  <div class="info-item">
+    <div class="info-num">医療保険</div>
+    <div class="info-label">自立支援医療も対応</div>
+  </div>
+  <div class="info-item">
+    <div class="info-num">月〜土</div>
+    <div class="info-label">9:00〜17:00受付</div>
+  </div>
+  <div class="info-item">
+    <div class="info-num">京都市<sup>全域</sup></div>
+    <div class="info-label">向日市・長岡京市も対応</div>
+  </div>
+</div>
+
+<!-- About/seed -->
+<section class="about-seed" id="seed">
+  <div class="container">
+    <div class="seed-inner">
+      <div class="seed-visual">
+        <img src="assets/logo2.jpg" alt="らぐれーぬロゴ">
+      </div>
+      <div class="seed-content">
+        <span class="section-tag">ABOUT LAGRAINE</span>
+        <h2 class="section-title">「らぐれーぬ」とは</h2>
+        <p class="section-lead">フランス語で「たね（la graine）」を意味します。</p>
+        <div class="seed-message">
+          お一人おひとりの「自分らしさ」の<strong>【たね】</strong>が<br>
+          その方自身の力で育つように。<br><br>
+          その力を<strong>信じ</strong>、<strong>見守り</strong>、<strong>支え</strong>、<br>
+          一緒に成長していきたいと考えています。
+        </div>
+        <p style="margin-top:24px; font-size:13px; color:var(--ink-mid); line-height:2; letter-spacing:0.04em;">
+          看護師・作業療法士などの専門スタッフが直接ご自宅にお伺いし、家庭や地域社会で安心してその方らしい生活を続けていけるよう、ともに歩んでまいります。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Concern -->
+<section class="concern" id="concern">
+  <div class="container">
+    <div class="concern-inner">
+      <div class="concern-img-wrap">
+        <img src="assets/a.png" alt="悩みを抱えるイメージ">
+        <div class="concern-badge">ひとりで<br>抱えないでください</div>
+      </div>
+      <div>
+        <span class="section-tag">CONSULTATION</span>
+        <h2 class="section-title">こんな悩みを<br>抱えていませんか？</h2>
+        <p class="section-lead">精神科訪問看護は、こころの不調を抱えながら地域で生活する方々を専門スタッフがご自宅でサポートするサービスです。</p>
+        <div class="concern-list">
+          <div class="concern-item"><div class="concern-dot"></div>自分らしさがわからない</div>
+          <div class="concern-item"><div class="concern-dot"></div>感情に振り回されて疲れるときがある</div>
+          <div class="concern-item"><div class="concern-dot"></div>人とコミュニケーションをとるのが苦手</div>
+          <div class="concern-item"><div class="concern-dot"></div>自立したいけど、どうすればよいかわからない</div>
+          <div class="concern-item"><div class="concern-dot"></div>悩みや不安を話せる人がいない</div>
+          <div class="concern-item"><div class="concern-dot"></div>病気との付き合い方がわからない</div>
+          <div class="concern-item"><div class="concern-dot"></div>生活のリズムが安定しない・家にとじこもっている</div>
+        </div>
+      </div>
+    </div>
+    <div class="diseases">
+      <div class="diseases-title">対象となる主な疾患</div>
+      <div class="disease-tags">
+        <span class="disease-tag">摂食障害</span><span class="disease-tag">発達障害</span>
+        <span class="disease-tag">不安障害</span><span class="disease-tag">強迫性障害</span>
+        <span class="disease-tag">気分障害</span><span class="disease-tag">依存症（アルコール・薬物）</span>
+        <span class="disease-tag">統合失調症</span><span class="disease-tag">その他　年齢問わず</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<section class="services" id="services">
+  <div class="container">
+    <span class="section-tag">SERVICES</span>
+    <h2 class="section-title">サービスの主な内容</h2>
+    <p class="section-lead">主治医からの訪問看護指示書をもとに個別のサービス計画を作成し、ご提供します。</p>
+    <div class="services-grid">
+      <div class="service-item"><div class="service-num">01</div><div class="service-name">医療上のケア</div><p class="service-desc">身体やこころの症状の観察と対応、お薬の管理・副作用の観察、主治医への連絡や相談。</p></div>
+      <div class="service-item"><div class="service-num">02</div><div class="service-name">日常生活のケア</div><p class="service-desc">食事・睡眠・排泄・清潔保持、人との付き合い、余暇活動など生活全般にわたる援助。</p></div>
+      <div class="service-item"><div class="service-num">03</div><div class="service-name">社会生活の支援</div><p class="service-desc">仕事・学校・家族関係・近所付き合いに関する相談や関係機関の情報提供。</p></div>
+      <div class="service-item"><div class="service-num">04</div><div class="service-name">その他のサポート</div><p class="service-desc">外出支援、家事・買い物の支援、受診同行、行政手続きのサポートなど幅広く対応。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Steps -->
+<section class="steps" id="steps">
+  <div class="container">
+    <span class="section-tag">HOW TO USE</span>
+    <h2 class="section-title">ご利用方法</h2>
+    <p class="section-lead">まずはかかりつけ医にご相談ください。訪問看護指示書をもとに、個別のサービス計画を立てます。</p>
+    <div class="steps-grid">
+      <div class="step-item"><img class="step-img" src="assets/step1.png" alt="ステップ1"><div class="step-num">STEP 01</div><div class="step-label">かかりつけ医（主治医）に<br>相談する</div></div>
+      <div class="step-item"><img class="step-img" src="assets/step2.png" alt="ステップ2"><div class="step-num">STEP 02</div><div class="step-label">主治医から訪問看護の<br>指示を受ける</div></div>
+      <div class="step-item"><img class="step-img" src="assets/step3.png" alt="ステップ3"><div class="step-num">STEP 03</div><div class="step-label">ご利用についての<br>説明を受ける</div></div>
+      <div class="step-item"><img class="step-img" src="assets/step4.png" alt="ステップ4"><div class="step-num">STEP 04</div><div class="step-label">利用回数やケア内容・<br>希望の日時をご相談</div></div>
+      <div class="step-item"><img class="step-img" src="assets/step5.png" alt="ステップ5"><div class="step-num">STEP 05</div><div class="step-label">同意の上で<br>契約をする</div></div>
+      <div class="step-item"><img class="step-img" src="assets/step6.png" alt="ステップ6"><div class="step-num">STEP 06</div><div class="step-label">訪問看護を<br>開始する</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <span class="section-tag">FAQ</span>
+    <h2 class="section-title">よくあるご質問</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-mark">Q</span><span>訪問看護を受けるための費用はどうなりますか？</span><span class="faq-q-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><line x1="7" y1="1" x2="7" y2="13" stroke="currentColor" stroke-width="1.5"/><line x1="1" y1="7" x2="13" y2="7" stroke="currentColor" stroke-width="1.5"/></svg></span></div>
+        <div class="faq-a"><div class="faq-a-inner"><span class="faq-a-mark">A</span><p class="faq-a-text">医療保険を利用することができます。精神科訪問看護については自立支援医療を使うこともできます。詳しくはお気軽にご相談ください。</p></div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-mark">Q</span><span>訪問してもらえる地域はどこですか？</span><span class="faq-q-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><line x1="7" y1="1" x2="7" y2="13" stroke="currentColor" stroke-width="1.5"/><line x1="1" y1="7" x2="13" y2="7" stroke="currentColor" stroke-width="1.5"/></svg></span></div>
+        <div class="faq-a"><div class="faq-a-inner"><span class="faq-a-mark">A</span><p class="faq-a-text">京都市（京北地域を除く）・向日市・長岡京市を訪問範囲としています。</p></div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-mark">Q</span><span>毎回違うスタッフが来るのですか？</span><span class="faq-q-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><line x1="7" y1="1" x2="7" y2="13" stroke="currentColor" stroke-width="1.5"/><line x1="1" y1="7" x2="13" y2="7" stroke="currentColor" stroke-width="1.5"/></svg></span></div>
+        <div class="faq-a"><div class="faq-a-inner"><span class="faq-a-mark">A</span><p class="faq-a-text">ご利用者さんに合わせて担当スタッフ制をとっておりますので、毎回同じスタッフが訪問します。安心してご利用ください。</p></div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-mark">Q</span><span>家族についても相談できますか？</span><span class="faq-q-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><line x1="7" y1="1" x2="7" y2="13" stroke="currentColor" stroke-width="1.5"/><line x1="1" y1="7" x2="13" y2="7" stroke="currentColor" stroke-width="1.5"/></svg></span></div>
+        <div class="faq-a"><div class="faq-a-inner"><span class="faq-a-mark">A</span><p class="faq-a-text">はい。ご家族が感じておられる不安や気がかりなどについての援助・相談にも応じます。どうぞお気軽にご連絡ください。</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <div>
+        <span class="section-tag">CONTACT</span>
+        <h2 class="section-title">お問い合わせ</h2>
+        <p class="section-lead">ご不明な点がございましたら、まずはお気軽にご相談ください。スタッフ一同、心よりお待ちしております。</p>
+        <div class="contact-phone">075-754-8832</div>
+        <div class="contact-hours">受付時間　月〜土 9:00〜17:00　　日曜・祝日 定休</div>
+        <a href="#" class="btn-contact">メールでのお問い合わせ</a>
+      </div>
+      <div>
+        <table class="info-table">
+          <tr><th>法人名</th><td>認定NPO法人SEEDきょうと</td></tr>
+          <tr><th>事業所名</th><td>訪問看護ステーション　らぐれーぬ</td></tr>
+          <tr><th>住所</th><td>〒600-8269<br>京都市下京区七条通猪熊東入<br>西八百屋町136番地 ランドビル2階</td></tr>
+          <tr><th>電話</th><td>075-754-8832</td></tr>
+          <tr><th>FAX</th><td>075-320-5122</td></tr>
+          <tr><th>訪問地域</th><td>京都市（京北地域を除く）・向日市・長岡京市</td></tr>
+          <tr><th>業務内容</th><td>精神科訪問看護</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-nav">
+      <a href="#top">ホーム</a>
+      <a href="#seed">らぐれーぬについて</a>
+      <a href="#concern">こんな悩みに</a>
+      <a href="#services">サービス内容</a>
+      <a href="#steps">ご利用方法</a>
+      <a href="#faq">よくある質問</a>
+      <a href="#contact">お問い合わせ</a>
+      <a href="#">医療機関の方へ</a>
+    </div>
+    <div class="copyright">© 2025 lagraine / 認定NPO法人SEEDきょうと　All Rights Reserved.</div>
+  </div>
+</footer>
+
+<!-- Tweaks -->
+<div id="tweaks-panel">
+  <div class="tweaks-title">Tweaks</div>
+  <span class="tweaks-label">アクセントカラー</span>
+  <div class="tweaks-swatch-row">
+    <div class="tweaks-swatch active" style="background:#5abfb9;" onclick="setColor('mint',this)" title="ミント"></div>
+    <div class="tweaks-swatch" style="background:#7ab5d8;" onclick="setColor('skyblue',this)" title="スカイブルー"></div>
+    <div class="tweaks-swatch" style="background:#8ecf6a;" onclick="setColor('green',this)" title="グリーン"></div>
+  </div>
+  <span class="tweaks-label">ヒーロー右背景</span>
+  <div id="bgBtns">
+    <button class="tweaks-btn active" onclick="setHeroBg('mint-green',this)">ミント×グリーン</button>
+    <button class="tweaks-btn" onclick="setHeroBg('sky',this)">スカイブルー系</button>
+    <button class="tweaks-btn" onclick="setHeroBg('cream',this)">クリーム系</button>
+  </div>
+</div>
+
+<script>
+document.getElementById('menuToggle').addEventListener('click', () => document.getElementById('mobileMenu').classList.add('open'));
+document.getElementById('menuClose').addEventListener('click', closeMobileMenu);
+function closeMobileMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
+
+function toggleFaq(el) {
+  const item = el.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+window.addEventListener('message', e => {
+  if (e.data?.type === '__activate_edit_mode') document.getElementById('tweaks-panel').classList.add('visible');
+  if (e.data?.type === '__deactivate_edit_mode') document.getElementById('tweaks-panel').classList.remove('visible');
+});
+window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{"accentColor":"mint","heroBg":"mint-green"}/*EDITMODE-END*/;
+
+function setColor(color, el) {
+  const map = { mint:'#5abfb9', skyblue:'#7ab5d8', green:'#8ecf6a' };
+  document.documentElement.style.setProperty('--mint', map[color]);
+  document.querySelectorAll('.tweaks-swatch').forEach(s => s.classList.remove('active'));
+  el.classList.add('active');
+  window.parent.postMessage({ type:'__edit_mode_set_keys', edits:{ accentColor: color }}, '*');
+}
+
+function setHeroBg(bg, el) {
+  const bgMap = {
+    'mint-green': 'linear-gradient(160deg, #caf0ed 0%, #b0e0c5 50%, #d4f0e0 100%)',
+    'sky': 'linear-gradient(160deg, #c8e8f8 0%, #b0d0f0 60%, #c8e0f8 100%)',
+    'cream': 'linear-gradient(160deg, #f5f0e4 0%, #ede4d4 60%, #f0ebe0 100%)',
+  };
+  document.querySelector('.hero-right').style.background = bgMap[bg];
+  document.querySelectorAll('#bgBtns .tweaks-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  window.parent.postMessage({ type:'__edit_mode_set_keys', edits:{ heroBg: bg }}, '*');
+}
+
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.service-item, .step-item, .seed-message, .concern-inner, .faq-item').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(18px)';
+  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  obs.observe(el);
+});
+</script>
+</body>
+</html>

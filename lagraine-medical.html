@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>医療機関の方へ — 訪問看護ステーション らぐれーぬ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --mint:        #5abfb9;
+  --mint-mid:    #7ed0cb;
+  --mint-light:  #aee6e2;
+  --mint-pale:   #d8f2f0;
+  --mint-bg:     #f0faf9;
+  --green:       #8ecf6a;
+  --green-light: #b6e494;
+  --green-pale:  #e4f5d4;
+  --ink:         #253530;
+  --ink-mid:     #4d6860;
+  --ink-light:   #8aa8a2;
+  --white:       #ffffff;
+  --serif:       'Noto Serif JP', serif;
+  --sans:        'Noto Sans JP', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); color: var(--ink); background: var(--white); line-height: 1.8; -webkit-font-smoothing: antialiased; }
+img { display: block; max-width: 100%; }
+
+/* ── Header ── */
+header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(90,191,185,0.15);
+}
+.header-inner {
+  max-width: 1200px; margin: 0 auto; padding: 0 40px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 68px;
+}
+.logo-wrap img { height: 54px; width: auto; object-fit: contain; }
+nav { display: flex; align-items: center; gap: 28px; }
+nav a { font-size: 12px; color: var(--ink-mid); text-decoration: none; letter-spacing: 0.06em; transition: color .2s; white-space: nowrap; }
+nav a:hover { color: var(--mint); }
+.nav-back {
+  font-size: 11px; letter-spacing: 0.1em; padding: 7px 16px;
+  border: 1.5px solid var(--ink-mid); color: var(--ink-mid);
+  text-decoration: none; transition: all .2s; white-space: nowrap;
+}
+.nav-back:hover { background: var(--ink-mid); color: white; }
+.menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; }
+.menu-toggle span { display: block; width: 22px; height: 1.5px; background: var(--ink); }
+
+/* ── Page label ── */
+.page-label {
+  background: var(--ink);
+  padding: 10px 40px;
+  display: flex; align-items: center; gap: 12px;
+}
+.page-label-text { font-size: 11px; color: rgba(255,255,255,0.6); letter-spacing: 0.2em; }
+.page-label-title { font-size: 13px; color: white; letter-spacing: 0.1em; font-family: var(--serif); }
+
+/* ── Hero ── */
+.hero {
+  display: grid; grid-template-columns: 1fr 1fr;
+  min-height: 480px; max-height: 560px;
+}
+.hero-left {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 64px 56px 64px 80px;
+  background: var(--white); position: relative; overflow: hidden;
+}
+.hero-left::before {
+  content: ''; position: absolute; right: -60px; bottom: -80px;
+  width: 360px; height: 360px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(174,230,226,0.2) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-eyebrow { display: flex; align-items: center; gap: 10px; margin-bottom: 24px; }
+.hero-eyebrow-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--mint); }
+.hero-eyebrow span { font-size: 11px; color: var(--ink-light); letter-spacing: 0.18em; }
+.hero-tagline {
+  font-family: var(--serif); font-weight: 300;
+  font-size: 38px; line-height: 1.65; color: var(--ink);
+  letter-spacing: 0.06em; margin-bottom: 20px;
+}
+.hero-sub { font-size: 14px; line-height: 2; color: var(--ink-mid); max-width: 420px; letter-spacing: 0.04em; margin-bottom: 36px; }
+.hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn-primary {
+  font-family: var(--sans); font-size: 13px; letter-spacing: 0.1em;
+  padding: 13px 34px; background: var(--mint); color: white;
+  border: none; cursor: pointer; transition: background .2s; text-decoration: none; display: inline-block;
+}
+.btn-primary:hover { background: var(--mint-mid); }
+.btn-outline {
+  font-family: var(--sans); font-size: 13px; letter-spacing: 0.08em;
+  padding: 13px 26px; background: transparent; color: var(--mint);
+  border: 1.5px solid var(--mint); cursor: pointer; transition: all .2s; text-decoration: none; display: inline-block;
+}
+.btn-outline:hover { background: var(--mint-pale); }
+.hero-right {
+  position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(160deg, #caf0ed 0%, #b0e0c5 50%, #d4f0e0 100%);
+}
+.hero-right-img { position: relative; z-index: 1; width: 82%; border-radius: 12px; }
+
+/* ── Section base ── */
+section { padding: 88px 0; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+.section-tag { font-size: 11px; color: var(--mint); letter-spacing: 0.25em; margin-bottom: 14px; display: block; }
+.section-title { font-family: var(--serif); font-weight: 300; font-size: 32px; line-height: 1.55; color: var(--ink); margin-bottom: 14px; letter-spacing: 0.06em; }
+.section-lead { font-size: 14px; color: var(--ink-mid); line-height: 2; max-width: 640px; letter-spacing: 0.04em; }
+
+/* ── 依頼方法 ── */
+.request { background: var(--mint-bg); }
+.request-steps {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+  margin-top: 48px;
+}
+.request-step {
+  background: white; padding: 36px;
+  display: flex; gap: 24px; align-items: flex-start;
+}
+.request-step-num {
+  font-family: var(--serif); font-size: 48px; color: var(--mint-pale);
+  line-height: 1; flex-shrink: 0; font-weight: 300;
+}
+.request-step-title { font-family: var(--serif); font-size: 18px; color: var(--mint); margin-bottom: 10px; letter-spacing: 0.06em; }
+.request-step-body { font-size: 13px; color: var(--ink-mid); line-height: 2; letter-spacing: 0.04em; }
+
+.request-note {
+  margin-top: 32px; padding: 24px 32px;
+  border: 1.5px solid var(--mint-pale);
+  display: flex; align-items: flex-start; gap: 20px;
+}
+.request-note-icon { font-size: 24px; flex-shrink: 0; }
+.request-note-text { font-size: 13px; color: var(--ink-mid); line-height: 2; }
+.request-note-text strong { color: var(--ink); }
+
+/* ── 対象疾患 ── */
+.diseases-section { background: var(--white); }
+.diseases-grid {
+  display: grid; grid-template-columns: repeat(4,1fr); gap: 12px;
+  margin-top: 40px;
+}
+.disease-item {
+  padding: 20px 16px; background: var(--mint-bg);
+  text-align: center;
+  font-size: 13px; color: var(--ink-mid); letter-spacing: 0.04em;
+  border-top: 2px solid var(--mint-light);
+}
+
+/* ── サービス内容 ── */
+.services { background: var(--mint-bg); }
+.services-grid {
+  display: grid; grid-template-columns: repeat(2,1fr); gap: 2px;
+  margin-top: 48px; background: var(--mint-pale);
+}
+.service-item { background: white; padding: 36px; }
+.service-num { font-family: var(--serif); font-size: 28px; color: var(--mint-light); margin-bottom: 12px; }
+.service-name { font-family: var(--serif); font-size: 17px; color: var(--ink); margin-bottom: 10px; letter-spacing: 0.06em; }
+.service-desc { font-size: 13px; color: var(--ink-mid); line-height: 2; letter-spacing: 0.04em; }
+
+/* ── ご利用方法 ── */
+
+/* ── DX加算掲示 ── */
+.dx-section { background: var(--white); }
+.dx-box {
+  border: 1px solid rgba(90,191,185,0.25); margin-top: 24px; overflow: hidden;
+}
+.dx-box-header {
+  background: var(--mint-bg); padding: 18px 28px;
+  font-family: var(--serif); font-size: 15px; color: var(--ink); letter-spacing: 0.06em;
+}
+.dx-box-body { padding: 24px 28px; font-size: 13px; color: var(--ink-mid); line-height: 2.1; letter-spacing: 0.04em; }
+.dx-list { list-style: none; counter-reset: dx-counter; }
+.dx-list li { counter-increment: dx-counter; padding: 8px 0 8px 28px; border-bottom: 1px solid rgba(90,191,185,0.1); position: relative; }
+.dx-list li:last-child { border-bottom: none; }
+.dx-list li::before { content: counter(dx-counter) "．"; position: absolute; left: 0; color: var(--mint); font-weight: 500; }
+.dx-highlight {
+  margin-top: 16px; padding: 16px 20px;
+  background: var(--mint-bg);
+  font-size: 13px; color: var(--ink-mid);
+}
+
+/* ── 求人募集 ── */
+.recruit { background: linear-gradient(150deg, #c8ede9 0%, #caeacc 100%); }
+.recruit-inner {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+}
+.recruit-img { border-radius: 12px; width: 100%; }
+.recruit-tags { display: flex; gap: 10px; flex-wrap: wrap; margin: 20px 0 28px; }
+.recruit-tag {
+  font-size: 12px; padding: 6px 16px;
+  background: white; color: var(--mint);
+  border: 1px solid var(--mint-light); letter-spacing: 0.06em;
+}
+.recruit-note { font-size: 13px; color: var(--ink-mid); line-height: 2; letter-spacing: 0.04em; margin-bottom: 32px; }
+
+/* ── FAQ ── */
+.faq { background: var(--mint-bg); }
+.faq-list { margin-top: 44px; max-width: 740px; }
+.faq-item { border-bottom: 1px solid var(--mint-pale); overflow: hidden; }
+.faq-q { display: flex; align-items: flex-start; gap: 14px; padding: 18px 0 6px; font-size: 14px; color: var(--ink); letter-spacing: 0.04em; }
+.faq-q-mark { font-family: var(--serif); font-size: 18px; color: var(--mint); flex-shrink: 0; }
+.faq-a-inner { display: flex; gap: 14px; padding: 0 0 18px 32px; }
+.faq-a-mark { font-family: var(--serif); font-size: 18px; color: var(--green); flex-shrink: 0; }
+.faq-a-text { font-size: 13px; color: var(--ink-mid); line-height: 2; letter-spacing: 0.04em; }
+.steps-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; margin-top: 48px; }
+.step-item { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.step-img { width: 180px; height: 180px; object-fit: contain; margin-bottom: 12px; border-radius: 16px; filter: drop-shadow(0 2px 8px rgba(90,191,185,0.15)); }
+.step-num { font-family: var(--serif); font-size: 11px; color: var(--mint); letter-spacing: 0.18em; margin-bottom: 6px; }
+.step-label { font-size: 13px; color: var(--ink); letter-spacing: 0.04em; line-height: 1.7; }
+
+/* ── Contact ── */
+.contact { background: var(--ink); }
+.contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.contact .section-tag { color: var(--mint-mid); }
+.contact .section-title { color: white; }
+.contact .section-lead { color: rgba(255,255,255,0.55); max-width: 400px; }
+.contact-phone { font-family: var(--serif); font-size: 38px; color: white; letter-spacing: 0.06em; margin: 28px 0 6px; }
+.contact-hours { font-size: 12px; color: rgba(255,255,255,0.45); letter-spacing: 0.1em; margin-bottom: 32px; }
+.btn-white {
+  font-family: var(--sans); font-size: 13px; letter-spacing: 0.1em;
+  padding: 13px 36px; background: white; color: var(--ink);
+  border: none; cursor: pointer; text-decoration: none; display: inline-block; transition: opacity .2s;
+}
+.btn-white:hover { opacity: 0.9; }
+.info-table { width: 100%; border-collapse: collapse; }
+.info-table tr { border-bottom: 1px solid rgba(255,255,255,0.08); }
+.info-table th { font-size: 11px; color: rgba(255,255,255,0.35); letter-spacing: 0.1em; padding: 14px 0; text-align: left; font-weight: 400; width: 110px; }
+.info-table td { font-size: 13px; color: rgba(255,255,255,0.65); padding: 14px 0; letter-spacing: 0.04em; }
+
+/* ── Footer ── */
+footer { background: #1a2820; padding: 32px 0; }
+.footer-inner { max-width: 1200px; margin: 0 auto; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+.footer-nav { display: flex; gap: 24px; flex-wrap: wrap; }
+.footer-nav a { font-size: 11px; color: rgba(255,255,255,0.3); text-decoration: none; letter-spacing: 0.06em; transition: color .2s; }
+.footer-nav a:hover { color: var(--mint-light); }
+.copyright { font-size: 11px; color: rgba(255,255,255,0.2); letter-spacing: 0.06em; }
+
+/* ── Mobile menu ── */
+.mobile-menu { display: none; position: fixed; inset: 0; z-index: 200; background: white; flex-direction: column; justify-content: center; align-items: center; gap: 32px; }
+.mobile-menu.open { display: flex; }
+.mobile-menu a { font-size: 18px; color: var(--ink); text-decoration: none; letter-spacing: 0.08em; }
+.mobile-menu-close { position: absolute; top: 24px; right: 24px; background: none; border: none; cursor: pointer; font-size: 28px; color: var(--ink-mid); }
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .header-inner { padding: 0 20px; }
+  nav { display: none; }
+  .menu-toggle { display: flex; }
+  .page-label { padding: 10px 20px; }
+  .hero { grid-template-columns: 1fr; min-height: auto; max-height: none; }
+  .hero-left { padding: 48px 24px 40px; order: 2; }
+  .hero-tagline { font-size: 28px; }
+  .hero-right { order: 1; min-height: 240px; max-height: 280px; }
+  section { padding: 60px 0; }
+  .container { padding: 0 20px; }
+  .request-steps { grid-template-columns: 1fr; }
+  .diseases-grid { grid-template-columns: repeat(2,1fr); }
+  .services-grid { grid-template-columns: 1fr; }
+  .steps-grid { grid-template-columns: repeat(2,1fr); }
+  .recruit-inner, .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── Header ── -->
+<header>
+  <div class="header-inner">
+    <div class="logo-wrap">
+      <img src="assets/logo.jpg" alt="訪問看護ステーション らぐれーぬ">
+    </div>
+    <nav>
+      <a href="#request">ご依頼方法</a>
+      <a href="#diseases">対象疾患</a>
+      <a href="#services">サービス内容</a>
+      <a href="#steps">ご利用方法</a>
+      <a href="#recruit">求人募集</a>
+      <a href="#contact">お問い合わせ</a>
+      <a href="lagraine-v2.html" class="nav-back">← ご利用希望の方へ</a>
+    </nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="メニュー">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ── Mobile Menu ── -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu-close" id="menuClose">✕</button>
+  <a href="#request" onclick="closeMobileMenu()">ご依頼方法</a>
+  <a href="#diseases" onclick="closeMobileMenu()">対象疾患</a>
+  <a href="#services" onclick="closeMobileMenu()">サービス内容</a>
+  <a href="#steps" onclick="closeMobileMenu()">ご利用方法</a>
+  <a href="#recruit" onclick="closeMobileMenu()">求人募集</a>
+  <a href="#contact" onclick="closeMobileMenu()">お問い合わせ</a>
+  <a href="lagraine-v2.html" onclick="closeMobileMenu()">← ご利用希望の方へ</a>
+</div>
+
+<!-- ── Page label ── -->
+<div class="page-label">
+  <span class="page-label-text">FOR MEDICAL PROFESSIONALS</span>
+  <span class="page-label-title">医療機関の方へ</span>
+</div>
+
+<!-- ── Hero ── -->
+<div class="hero" id="top">
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-dot"></div>
+      <span>訪問看護ステーション　らぐれーぬ　／　医療機関・関係者の方へ</span>
+    </div>
+    <h1 class="hero-tagline">患者さまの<br>地域生活を、<br>ともに支えます。</h1>
+    <p class="hero-sub">
+      精神科訪問看護の専門スタッフが、主治医の先生と連携しながら患者さまのご自宅でのケアを担います。訪問看護指示書の発行をもってすぐにサービスを開始できます。
+    </p>
+    <div class="hero-btns">
+      <a href="#request" class="btn-primary">ご依頼方法を見る</a>
+      <a href="#contact" class="btn-outline">お問い合わせ</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <svg style="position:absolute;inset:0;width:100%;height:100%;" viewBox="0 0 600 560" preserveAspectRatio="xMidYMid slice">
+      <circle cx="480" cy="100" r="260" fill="rgba(255,255,255,0.2)"/>
+      <circle cx="100" cy="460" r="180" fill="rgba(142,207,106,0.12)"/>
+    </svg>
+    <img class="hero-right-img" src="assets/b.png" alt="訪問看護のシーン">
+  </div>
+</div>
+
+<!-- ── 依頼方法 ── -->
+<section class="request" id="request">
+  <div class="container">
+    <span class="section-tag">HOW TO REQUEST</span>
+    <h2 class="section-title">医療機関からのご依頼方法</h2>
+    <p class="section-lead">シンプルな2ステップでご依頼いただけます。まずはお気軽にお電話ください。</p>
+
+    <div class="request-steps">
+      <div class="request-step">
+        <div class="request-step-num">01</div>
+        <div>
+          <div class="request-step-title">まずはお電話ください</div>
+          <p class="request-step-body">
+            患者さまの状況や希望するサービス内容についてお聞かせください。担当スタッフが詳細をご確認し、訪問開始までの流れをご説明します。<br><br>
+            <strong style="color:var(--ink); font-size:20px;">075-754-8832</strong><br>
+            <span style="font-size:12px; color:var(--ink-light);">受付時間　月〜土 9:00〜17:00</span>
+          </p>
+        </div>
+      </div>
+      <div class="request-step">
+        <div class="request-step-num">02</div>
+        <div>
+          <div class="request-step-title">訪問看護指示書の作成をお願いします</div>
+          <p class="request-step-body">
+            訪問看護指示書（精神科訪問看護指示書）を発行していただくことで、サービスを開始できます。書式についてはお問い合わせください。<br><br>
+            指示書受理後、速やかに担当スタッフを配置し、個別のサービス計画を作成します。
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="request-note">
+      <div class="request-note-icon">💬</div>
+      <div class="request-note-text">
+        <strong>連携についてのご相談も歓迎します。</strong><br>
+        ケースの状況確認、退院後の生活支援の相談、サービス調整など、お気軽にご連絡ください。スタッフが丁寧に対応いたします。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 対象疾患 ── -->
+<section class="diseases-section" id="diseases">
+  <div class="container">
+    <span class="section-tag">TARGET CONDITIONS</span>
+    <h2 class="section-title">対象となる疾患</h2>
+    <p class="section-lead">年齢を問わずご支援させていただきます。またご家族が感じておられる不安や気がかりなどについての援助・相談にも応じます。</p>
+    <div class="diseases-grid">
+      <div class="disease-item">摂食障害</div>
+      <div class="disease-item">発達障害</div>
+      <div class="disease-item">不安障害</div>
+      <div class="disease-item">強迫性障害</div>
+      <div class="disease-item">気分障害</div>
+      <div class="disease-item">依存症<br><span style="font-size:11px;">(アルコール・薬物など)</span></div>
+      <div class="disease-item">統合失調症</div>
+      <div class="disease-item">その他<br><span style="font-size:11px;">精神疾患全般</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── サービス内容 ── -->
+<section class="services" id="services">
+  <div class="container">
+    <span class="section-tag">SERVICES</span>
+    <h2 class="section-title">サービスの主な内容</h2>
+    <p class="section-lead">主治医からの訪問看護指示書をもとに個別のサービス計画を作成し、提供します。</p>
+    <div class="services-grid">
+      <div class="service-item">
+        <div class="service-num">01</div>
+        <div class="service-name">医療上のケア</div>
+        <p class="service-desc">身体やこころの症状の観察と対応、お薬の管理・副作用などの観察、主治医への連絡や相談。病状変化時には速やかにご連絡します。</p>
+      </div>
+      <div class="service-item">
+        <div class="service-num">02</div>
+        <div class="service-name">日常生活のケア</div>
+        <p class="service-desc">食事・睡眠・排泄・清潔保持、人との付き合い、余暇活動などに関する援助。生活リズムの安定を支援します。</p>
+      </div>
+      <div class="service-item">
+        <div class="service-num">03</div>
+        <div class="service-name">社会生活の支援</div>
+        <p class="service-desc">仕事・学校・家族関係・近所付き合いなどに関する相談や関係機関の情報提供。社会参加に向けた段階的支援を行います。</p>
+      </div>
+      <div class="service-item">
+        <div class="service-num">04</div>
+        <div class="service-name">その他のサポート</div>
+        <p class="service-desc">外出支援、家事・買い物の支援、受診同行、行政手続きのサポートなど、生活全般にわたる包括的な援助。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ご利用方法 ── -->
+<section id="steps" style="background:var(--white); padding:88px 0;">
+  <div class="container">
+    <span class="section-tag">HOW TO USE</span>
+    <h2 class="section-title">ご利用方法（患者様向け）</h2>
+    <p class="section-lead">患者さまへのご案内にもご活用ください。</p>
+    <div class="steps-grid">
+      <div class="step-item"><img class="step-img" src="assets/step1.png" alt="1"><div class="step-num">STEP 01</div><div class="step-label">かかりつけ医（主治医）に<br>相談する</div></div>
+      <div class="step-item"><img class="step-img" src="assets/step2.png" alt="2"><div class="step-num">STEP 02</div><div class="step-label">主治医から訪問看護の<br>指示を受ける</div></div>
+      <div class="step-item"><img class="step-img" src="assets/step3.png" alt="3"><div class="step-num">STEP 03</div><div class="step-label">ご利用についての<br>説明を受ける</div></div>
+      <div class="step-item"><img class="step-img" src="assets/step4.png" alt="4"><div class="step-num">STEP 04</div><div class="step-label">利用回数やケア内容・<br>希望の日時をご相談</div></div>
+      <div class="step-item"><img class="step-img" src="assets/step5.png" alt="5"><div class="step-num">STEP 05</div><div class="step-label">同意の上で<br>契約をする</div></div>
+      <div class="step-item"><img class="step-img" src="assets/step6.png" alt="6"><div class="step-num">STEP 06</div><div class="step-label">訪問看護を<br>開始する</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 求人募集 ── -->
+<section class="recruit" id="recruit">
+  <div class="container">
+    <div class="recruit-inner">
+      <div>
+        <span class="section-tag">RECRUITMENT</span>
+        <h2 class="section-title">求人募集</h2>
+        <p class="section-lead">らぐれーぬでは、一緒にお仕事をしていただける専門スタッフを随時募集しております。</p>
+        <div class="recruit-tags">
+          <span class="recruit-tag">看護師</span>
+          <span class="recruit-tag">作業療法士</span>
+          <span class="recruit-tag">随時募集中</span>
+        </div>
+        <p class="recruit-note">
+          精神科訪問看護の専門スタッフとして、利用者さまの自宅に訪問し、こころとからだ、そして生活を支える仕事です。<br><br>
+          お一人おひとりの「自分らしさ」のたねが育つよう、その力を信じ、見守り、支え、ともに成長していける仲間を歓迎します。<br><br>
+          詳細はお電話またはメールにてお問い合わせください。
+        </p>
+        <a href="#contact" class="btn-primary" style="background:var(--ink);">求人についてのお問い合わせ</a>
+      </div>
+      <div>
+        <img class="recruit-img" src="assets/b.png" alt="スタッフのイメージ">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ── -->
+<section class="faq" id="faq">
+  <div class="container">
+    <span class="section-tag">FAQ</span>
+    <h2 class="section-title">よくあるご質問</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q"><span class="faq-q-mark">Q</span><span>訪問看護指示書はどのように発行すればよいですか？</span></div>
+        <div class="faq-a-inner"><span class="faq-a-mark">A</span><p class="faq-a-text">精神科訪問看護指示書の書式にてご発行ください。書式や記載内容についてご不明な点はお気軽にお電話ください。郵送またはFAXにてお送りいただくことも可能です。</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span class="faq-q-mark">Q</span><span>訪問可能なエリアはどこですか？</span></div>
+        <div class="faq-a-inner"><span class="faq-a-mark">A</span><p class="faq-a-text">京都市（京北地域を除く）・向日市・長岡京市を訪問範囲としています。エリア外のケースについてもご相談ください。</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span class="faq-q-mark">Q</span><span>医療保険・自立支援医療は使えますか？</span></div>
+        <div class="faq-a-inner"><span class="faq-a-mark">A</span><p class="faq-a-text">はい。医療保険を利用することができます。精神科訪問看護については自立支援医療（精神通院）を使うこともできます。費用について患者さまにご説明される際の参考にしてください。</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span class="faq-q-mark">Q</span><span>担当スタッフはどのように決まりますか？</span></div>
+        <div class="faq-a-inner"><span class="faq-a-mark">A</span><p class="faq-a-text">ご利用者さまに合わせて専任の担当スタッフを配置する担当制をとっています。原則として毎回同じスタッフが訪問しますので、継続的な関係性の中でケアを提供できます。</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span class="faq-q-mark">Q</span><span>病状変化時の連絡体制はどうなっていますか？</span></div>
+        <div class="faq-a-inner"><span class="faq-a-mark">A</span><p class="faq-a-text">訪問時に病状の変化や緊急を要する状態を確認した場合は、速やかに主治医の先生にご連絡します。平常時も定期的に状況をご報告するよう努めています。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Contact ── -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <div>
+        <span class="section-tag">CONTACT</span>
+        <h2 class="section-title">お問い合わせ</h2>
+        <p class="section-lead">ご依頼・ご相談はお気軽にご連絡ください。スタッフが丁寧に対応いたします。</p>
+        <div class="contact-phone">075-754-8832</div>
+        <div class="contact-hours">受付時間　月〜土 9:00〜17:00　　日曜・祝日 定休<br>FAX: 075-320-5122</div>
+        <a href="mailto:lagraine@seedkyoto.net" class="btn-white">メールでのお問い合わせ</a>
+      </div>
+      <div>
+        <table class="info-table">
+          <tr><th>法人名</th><td>認定NPO法人SEEDきょうと</td></tr>
+          <tr><th>事業所名</th><td>訪問看護ステーション　らぐれーぬ</td></tr>
+          <tr><th>住所</th><td>〒600-8269<br>京都市下京区七条通猪熊東入<br>西八百屋町136番地 ランドビル2階</td></tr>
+          <tr><th>電話</th><td>075-754-8832</td></tr>
+          <tr><th>FAX</th><td>075-320-5122</td></tr>
+          <tr><th>訪問地域</th><td>京都市（京北地域を除く）・向日市・長岡京市</td></tr>
+          <tr><th>業務内容</th><td>精神科訪問看護</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-nav">
+      <a href="#top">ページトップ</a>
+      <a href="#request">ご依頼方法</a>
+      <a href="#diseases">対象疾患</a>
+      <a href="#services">サービス内容</a>
+      <a href="#steps">ご利用方法</a>
+      <a href="#recruit">求人募集</a>
+      <a href="#faq">よくある質問</a>
+      <a href="#contact">お問い合わせ</a>
+      <a href="lagraine-v2.html">← ご利用希望の方へ</a>
+    </div>
+    <div class="copyright">© 2021 lagraine / 認定NPO法人SEEDきょうと　All Rights Reserved.</div>
+  </div>
+</footer>
+
+<script>
+document.getElementById('menuToggle').addEventListener('click', () => document.getElementById('mobileMenu').classList.add('open'));
+document.getElementById('menuClose').addEventListener('click', closeMobileMenu);
+function closeMobileMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
+
+function toggleFaq(el) {
+  const item = el.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.request-step, .service-item, .step-item, .disease-item, .dx-box, .faq-item').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(16px)';
+  el.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
+  obs.observe(el);
+});
+</script>
+</body>
+</html>

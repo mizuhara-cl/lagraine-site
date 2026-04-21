@@ -113,12 +113,11 @@ nav a:hover { color: var(--mint); }
 .btn-outline:hover { background: var(--mint-pale); }
 .hero-right {
   position: relative; overflow: hidden;
-  display: flex; align-items: flex-end; justify-content: center;
+  display: flex; align-items: center; justify-content: center;
   background: linear-gradient(160deg, #caf0ed 0%, #b0e0c5 50%, #d4f0e0 100%);
 }
 .hero-right-deco { position: absolute; inset: 0; pointer-events: none; }
-.hero-right-img { position: relative; z-index: 1; width: 88%; max-width: 460px; border-radius: 12px 12px 0 0; }
-.hero-right-caption { position: absolute; bottom: 20px; left: 24px; font-size: 11px; color: rgba(37,53,48,0.45); letter-spacing: 0.16em; z-index: 2; }
+.hero-right-img { position: relative; z-index: 1; width: 88%; max-width: 460px; border-radius: 12px; }
 
 /* ── Info bar ── */
 .info-bar {
@@ -142,8 +141,19 @@ section { padding: 96px 0; }
 /* ── About/seed ── */
 .about-seed { background: var(--mint-bg); }
 .seed-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-.seed-visual { display: flex; justify-content: center; align-items: center; }
-.seed-visual img { width: 85%; border-radius: 50%; box-shadow: 0 8px 48px rgba(90,191,185,0.18); }
+.seed-visual {
+  display: flex; justify-content: center; align-items: center;
+  padding: 20px;
+}
+.seed-visual img {
+  width: 480px; height: 480px;
+  border-radius: 50%;
+  border: 2px solid var(--mint-light);
+  box-shadow: 0 6px 36px rgba(90,191,185,0.18);
+  object-fit: contain;
+  background: white;
+  flex-shrink: 0;
+}
 .seed-message {
   margin-top: 32px; padding: 28px 32px;
   background: white; border-left: 3px solid var(--mint);
@@ -186,7 +196,7 @@ section { padding: 96px 0; }
 .steps { background: var(--white); }
 .steps-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; margin-top: 52px; }
 .step-item { display: flex; flex-direction: column; align-items: center; text-align: center; }
-.step-img { width: 130px; height: 130px; object-fit: contain; margin-bottom: 12px; }
+.step-img { width: 180px; height: 180px; object-fit: contain; margin-bottom: 14px; border-radius: 16px; filter: drop-shadow(0 2px 8px rgba(90,191,185,0.15)); }
 .step-num { font-family: var(--serif); font-size: 11px; color: var(--mint); letter-spacing: 0.18em; margin-bottom: 6px; }
 .step-label { font-size: 13px; color: var(--ink); letter-spacing: 0.04em; line-height: 1.7; }
 
@@ -194,13 +204,9 @@ section { padding: 96px 0; }
 .faq { background: var(--mint-bg); }
 .faq-list { margin-top: 44px; max-width: 740px; }
 .faq-item { border-bottom: 1px solid var(--mint-pale); overflow: hidden; }
-.faq-q { display: flex; align-items: flex-start; gap: 14px; padding: 22px 0; cursor: pointer; font-size: 14px; color: var(--ink); letter-spacing: 0.04em; user-select: none; }
+.faq-q { display: flex; align-items: flex-start; gap: 14px; padding: 18px 0 6px; font-size: 14px; color: var(--ink); letter-spacing: 0.04em; }
 .faq-q-mark { font-family: var(--serif); font-size: 18px; color: var(--mint); flex-shrink: 0; }
-.faq-q-icon { margin-left: auto; flex-shrink: 0; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; transition: transform .3s; color: var(--mint); }
-.faq-item.open .faq-q-icon { transform: rotate(45deg); }
-.faq-a { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .3s ease; }
-.faq-item.open .faq-a { grid-template-rows: 1fr; }
-.faq-a-inner { overflow: hidden; display: flex; gap: 14px; padding: 0 0 22px 32px; }
+.faq-a-inner { display: flex; gap: 14px; padding: 0 0 18px 32px; }
 .faq-a-mark { font-family: var(--serif); font-size: 18px; color: var(--green); flex-shrink: 0; }
 .faq-a-text { font-size: 13px; color: var(--ink-mid); line-height: 2; letter-spacing: 0.04em; }
 
@@ -289,7 +295,7 @@ footer { background: var(--ink); padding: 32px 0; }
       <a href="#steps">ご利用方法</a>
       <a href="#faq">よくある質問</a>
       <a href="#contact">お問い合わせ</a>
-      <a href="#" class="nav-cta">医療機関の方へ</a>
+      <a href="lagraine-medical.html" class="nav-cta">医療機関の方へ</a>
     </nav>
     <button class="menu-toggle" id="menuToggle" aria-label="メニュー">
       <span></span><span></span><span></span>
@@ -340,7 +346,6 @@ footer { background: var(--ink); padding: 32px 0; }
       <circle cx="80" cy="600" r="200" fill="rgba(142,207,106,0.15)"/>
     </svg>
     <img class="hero-right-img" src="assets/b.png" alt="訪問看護のシーン">
-    <div class="hero-right-caption">専門スタッフがご自宅に訪問します</div>
   </div>
 </div>
 
@@ -369,20 +374,20 @@ footer { background: var(--ink); padding: 32px 0; }
   <div class="container">
     <div class="seed-inner">
       <div class="seed-visual">
-        <img src="assets/logo2.jpg" alt="らぐれーぬロゴ">
+        <img src="assets/lagrainelogo-tight.jpg" alt="らぐれーぬロゴ" style="padding:0px 0px 0px 10px;">
       </div>
       <div class="seed-content">
-        <span class="section-tag">ABOUT LAGRAINE</span>
-        <h2 class="section-title">「らぐれーぬ」とは</h2>
-        <p class="section-lead">フランス語で「たね（la graine）」を意味します。</p>
+        <span class="section-tag">ABOUT</span>
+        <h2 class="section-title">精神科訪問看護とは</h2>
+        <p class="section-lead">精神科訪問看護とは、精神疾患や心の不調を抱えながら地域で生活する方のご自宅に、看護師・作業療法士などの専門スタッフが訪問してケアを行うサービスです。</p>
         <div class="seed-message">
-          お一人おひとりの「自分らしさ」の<strong>【たね】</strong>が<br>
-          その方自身の力で育つように。<br><br>
-          その力を<strong>信じ</strong>、<strong>見守り</strong>、<strong>支え</strong>、<br>
-          一緒に成長していきたいと考えています。
+          病院での治療と並行して、<strong>日常生活の場</strong>で<br>
+          こころとからだ、そして生活全体を支えます。<br><br>
+          入院ではなく、住み慣れた地域で<br>
+          <strong>その方らしい生活を続けていく</strong>ことを目指します。
         </div>
         <p style="margin-top:24px; font-size:13px; color:var(--ink-mid); line-height:2; letter-spacing:0.04em;">
-          看護師・作業療法士などの専門スタッフが直接ご自宅にお伺いし、家庭や地域社会で安心してその方らしい生活を続けていけるよう、ともに歩んでまいります。
+          医療保険（または自立支援医療）が使えるため、費用面でも安心してご利用いただけます。主治医の訪問看護指示書をもとにサービスを開始します。
         </p>
       </div>
     </div>
@@ -456,6 +461,35 @@ footer { background: var(--ink); padding: 32px 0; }
   </div>
 </section>
 
+<!-- DX加算掲示 -->
+<section id="dx" style="background:var(--white); padding:80px 0;">
+  <div class="container">
+    <span class="section-tag">NOTICE</span>
+    <h2 class="section-title">サービスに係る掲示</h2>
+    <div style="margin-top:24px; border:1px solid rgba(90,191,185,0.25); overflow:hidden;">
+      <div style="background:var(--mint-bg); padding:16px 28px; font-family:var(--serif); font-size:15px; color:var(--ink); letter-spacing:0.06em;">訪問看護医療DX情報活用加算に係る掲示</div>
+      <div style="padding:24px 28px; font-size:13px; color:var(--ink-mid); line-height:2.1; letter-spacing:0.04em;">
+        <p>令和6年度診療報酬改定に伴い、訪問看護ステーションらぐれーぬは、地方厚生局長等に届け出た訪問看護ステーションの看護師等（准看護師除く）が、オンライン資格確認によって、利用者の診療情報や薬剤情報等を取得した上で訪問看護の実施に関する計画的な管理を行い、質の高い医療を提供します。これにより訪問看護医療DX情報活用加算として定められた額を所定額に加算します。</p>
+        <div style="margin-top:14px; padding:14px 18px; background:var(--mint-bg); font-size:13px;">
+          <div>・訪問看護医療DX情報活用加算　<strong>50円／月</strong></div>
+          <div>・加算開始日：令和7年3月1日</div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:16px; border:1px solid rgba(90,191,185,0.25); overflow:hidden;">
+      <div style="background:var(--mint-bg); padding:16px 28px; font-family:var(--serif); font-size:15px; color:var(--ink); letter-spacing:0.06em;">訪問看護医療DX情報活用加算算定に関する施設基準</div>
+      <div style="padding:24px 28px;">
+        <ol style="list-style:none; counter-reset:dx; font-size:13px; color:var(--ink-mid); line-height:2;">
+          <li style="counter-increment:dx; padding:7px 0 7px 28px; border-bottom:1px solid rgba(90,191,185,0.1); position:relative;"><span style="position:absolute;left:0;color:var(--mint);font-weight:500;">1．</span>厚生労働省が示す訪問看護療養費のオンライン請求を行っていること。</li>
+          <li style="counter-increment:dx; padding:7px 0 7px 28px; border-bottom:1px solid rgba(90,191,185,0.1); position:relative;"><span style="position:absolute;left:0;color:var(--mint);font-weight:500;">2．</span>マイナンバーを用いたオンライン資格確認を行う体制を整えていること。</li>
+          <li style="counter-increment:dx; padding:7px 0 7px 28px; border-bottom:1px solid rgba(90,191,185,0.1); position:relative;"><span style="position:absolute;left:0;color:var(--mint);font-weight:500;">3．</span>医療DX推進の体制に関する事項及び質の高い訪問看護を実施するための十分な情報を取得し、及び活用して訪問看護を行うことについて、当該訪問看護ステーションの見やすい場所に掲示していること。</li>
+          <li style="padding:7px 0 7px 28px; position:relative;"><span style="position:absolute;left:0;color:var(--mint);font-weight:500;">4．</span>上記掲示事項について、ウェブサイトに掲載していること。</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- FAQ -->
 <section class="faq" id="faq">
   <div class="container">
@@ -463,20 +497,20 @@ footer { background: var(--ink); padding: 32px 0; }
     <h2 class="section-title">よくあるご質問</h2>
     <div class="faq-list">
       <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-mark">Q</span><span>訪問看護を受けるための費用はどうなりますか？</span><span class="faq-q-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><line x1="7" y1="1" x2="7" y2="13" stroke="currentColor" stroke-width="1.5"/><line x1="1" y1="7" x2="13" y2="7" stroke="currentColor" stroke-width="1.5"/></svg></span></div>
-        <div class="faq-a"><div class="faq-a-inner"><span class="faq-a-mark">A</span><p class="faq-a-text">医療保険を利用することができます。精神科訪問看護については自立支援医療を使うこともできます。詳しくはお気軽にご相談ください。</p></div></div>
+        <div class="faq-q"><span class="faq-q-mark">Q</span><span>訪問看護を受けるための費用はどうなりますか？</span></div>
+        <div class="faq-a-inner"><span class="faq-a-mark">A</span><p class="faq-a-text">医療保険を利用することができます。精神科訪問看護については自立支援医療を使うこともできます。詳しくはお気軽にご相談ください。</p></div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-mark">Q</span><span>訪問してもらえる地域はどこですか？</span><span class="faq-q-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><line x1="7" y1="1" x2="7" y2="13" stroke="currentColor" stroke-width="1.5"/><line x1="1" y1="7" x2="13" y2="7" stroke="currentColor" stroke-width="1.5"/></svg></span></div>
-        <div class="faq-a"><div class="faq-a-inner"><span class="faq-a-mark">A</span><p class="faq-a-text">京都市（京北地域を除く）・向日市・長岡京市を訪問範囲としています。</p></div></div>
+        <div class="faq-q"><span class="faq-q-mark">Q</span><span>訪問してもらえる地域はどこですか？</span></div>
+        <div class="faq-a-inner"><span class="faq-a-mark">A</span><p class="faq-a-text">京都市（京北地域を除く）・向日市・長岡京市を訪問範囲としています。</p></div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-mark">Q</span><span>毎回違うスタッフが来るのですか？</span><span class="faq-q-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><line x1="7" y1="1" x2="7" y2="13" stroke="currentColor" stroke-width="1.5"/><line x1="1" y1="7" x2="13" y2="7" stroke="currentColor" stroke-width="1.5"/></svg></span></div>
-        <div class="faq-a"><div class="faq-a-inner"><span class="faq-a-mark">A</span><p class="faq-a-text">ご利用者さんに合わせて担当スタッフ制をとっておりますので、毎回同じスタッフが訪問します。安心してご利用ください。</p></div></div>
+        <div class="faq-q"><span class="faq-q-mark">Q</span><span>毎回違うスタッフが来るのですか？</span></div>
+        <div class="faq-a-inner"><span class="faq-a-mark">A</span><p class="faq-a-text">ご利用者さんに合わせて担当スタッフ制をとっておりますので、毎回同じスタッフが訪問します。安心してご利用ください。</p></div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-mark">Q</span><span>家族についても相談できますか？</span><span class="faq-q-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><line x1="7" y1="1" x2="7" y2="13" stroke="currentColor" stroke-width="1.5"/><line x1="1" y1="7" x2="13" y2="7" stroke="currentColor" stroke-width="1.5"/></svg></span></div>
-        <div class="faq-a"><div class="faq-a-inner"><span class="faq-a-mark">A</span><p class="faq-a-text">はい。ご家族が感じておられる不安や気がかりなどについての援助・相談にも応じます。どうぞお気軽にご連絡ください。</p></div></div>
+        <div class="faq-q"><span class="faq-q-mark">Q</span><span>家族についても相談できますか？</span></div>
+        <div class="faq-a-inner"><span class="faq-a-mark">A</span><p class="faq-a-text">はい。ご家族が感じておられる不安や気がかりなどについての援助・相談にも応じます。どうぞお気軽にご連絡ください。</p></div>
       </div>
     </div>
   </div>
@@ -492,7 +526,7 @@ footer { background: var(--ink); padding: 32px 0; }
         <p class="section-lead">ご不明な点がございましたら、まずはお気軽にご相談ください。スタッフ一同、心よりお待ちしております。</p>
         <div class="contact-phone">075-754-8832</div>
         <div class="contact-hours">受付時間　月〜土 9:00〜17:00　　日曜・祝日 定休</div>
-        <a href="#" class="btn-contact">メールでのお問い合わせ</a>
+        <a href="mailto:lagraine@seedkyoto.net" class="btn-contact">メールでのお問い合わせ</a>
       </div>
       <div>
         <table class="info-table">
@@ -522,7 +556,7 @@ footer { background: var(--ink); padding: 32px 0; }
       <a href="#contact">お問い合わせ</a>
       <a href="#">医療機関の方へ</a>
     </div>
-    <div class="copyright">© 2025 lagraine / 認定NPO法人SEEDきょうと　All Rights Reserved.</div>
+    <div class="copyright">© 2021 lagraine / 認定NPO法人SEEDきょうと　All Rights Reserved.</div>
   </div>
 </footer>
 
